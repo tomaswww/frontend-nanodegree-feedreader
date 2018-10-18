@@ -89,7 +89,7 @@ describe("Initial Entries", function(){
 let initialEntry;
   beforeEach(done => {
     loadFeed(1,() => {
-      let initialEntry = document.querySelector(".entry");
+      initialEntry = document.querySelector(".entry, .feed");
       done();
     });
   });
@@ -103,14 +103,14 @@ describe("New Feed Selection", function(){
   let firstFeed, secondFeed;
   beforeEach(done => {
   loadFeed(1, () => {
-    window.firstFeed = document.querySelector('.entry-link').innerHTML;
+    window.firstFeed = document.querySelector(".entry-link").innerHTML;
     loadFeed(2, () => {
-      window.secondFeed = document.querySelector('.entry-link').innerHTML;
+      window.secondFeed = document.querySelector(".entry-link").innerHTML;
       done();
     });
   });
 });
-it('loads new feeds', (done) => {
+it("loads new feeds", (done) => {
   expect(window.secondFeed !== window.firstFeed).toBe(true); done();
 });
 });
