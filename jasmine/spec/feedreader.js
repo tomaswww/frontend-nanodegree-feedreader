@@ -67,29 +67,42 @@ $(function() {
      * should have two expectations: does the menu display when
      * clicked and does it hide when clicked again.
      */
-     it('menu Visibility', function(){
-       let menuIcon = document.querySelector(".menu-icon-link");
-       menuIcon.click();
-       let menuShowed = document.querySelector("body").classList.contains("menu-hidden");
-       expect(menuShowed).toBe(false);
-       menuIcon.click();
-       let menuHidden = document.querySelector("body").classList.contains("menu-hidden");
-       expect(menuHidden).toBe(true);
-     });
+    it('menu Visibility', function() {
+      let menuIcon = document.querySelector(".menu-icon-link");
+      menuIcon.click();
+      let menuShowed = document.querySelector("body").classList.contains("menu-hidden");
+      expect(menuShowed).toBe(false);
+      menuIcon.click();
+      let menuHidden = document.querySelector("body").classList.contains("menu-hidden");
+      expect(menuHidden).toBe(true);
+    });
   });
-  /* TODO: Write a new test suite named "Initial Entries" */
 
+  /* TODO: Write a new test suite named "Initial Entries" */
+describe("Initial Entries", function(){
   /* TODO: Write a test that ensures when the loadFeed
    * function is called and completes its work, there is at least
    * a single .entry element within the .feed container.
    * Remember, loadFeed() is asynchronous so this test will require
    * the use of Jasmine's beforeEach and asynchronous done() function.
    */
-
+let firstEntry;
+  beforeEach(function(done){
+    loadFeed(1, function(){
+      let firstEntry = document.querySelector(".entry");
+      done();
+    });
+  });
+  it("loadFeed gets completed", function(done){
+  expect(firstEntry).toBeDefined(true);
+  done();
+  })
+});
   /* TODO: Write a new test suite named "New Feed Selection" */
 
   /* TODO: Write a test that ensures when a new feed is loaded
    * by the loadFeed function that the content actually changes.
    * Remember, loadFeed() is asynchronous.
    */
+
 }());
