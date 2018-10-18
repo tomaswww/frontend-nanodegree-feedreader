@@ -86,20 +86,34 @@ describe("Initial Entries", function(){
    * Remember, loadFeed() is asynchronous so this test will require
    * the use of Jasmine's beforeEach and asynchronous done() function.
    */
-let firstEntry;
-  beforeEach(function(done){
-    loadFeed(1, function(){
-      let firstEntry = document.querySelector(".entry");
+let initialEntry;
+  beforeEach(done => {
+    loadFeed(1,() => {
+      let initialEntry = document.querySelector(".entry");
       done();
     });
   });
-  it("loadFeed gets completed", function(done){
-  expect(firstEntry).toBeDefined(true);
+  it("loadFeed gets completed and with entry", (done)=>{
+  expect(initialEntry).toBeDefined(true);
   done();
-  })
+});
 });
   /* TODO: Write a new test suite named "New Feed Selection" */
-
+describe("New Feed Selection", function(){
+  let firstFeed, secondFeed;
+  beforeEach(done => {
+  loadFeed(1, () => {
+    window.firstFeed = document.querySelector('.entry-link').innerHTML;
+    loadFeed(2, () => {
+      window.secondFeed = document.querySelector('.entry-link').innerHTML;
+      done();
+    });
+  });
+});
+it('loads new feeds', (done) => {
+  expect(window.secondFeed !== window.firstFeed).toBe(true); done();
+});
+});
   /* TODO: Write a test that ensures when a new feed is loaded
    * by the loadFeed function that the content actually changes.
    * Remember, loadFeed() is asynchronous.
