@@ -75,12 +75,12 @@ $(function() {
     let initialEntry;
     beforeEach(done => {
       loadFeed(1, () => {
-        initialEntry = document.querySelector(".entry, .feed");
+        initialEntry = document.querySelectorAll(".feed .entry");
         done();
       });
     });
     it("loadFeed gets completed and with entry", (done) => {
-      expect(initialEntry).toBeDefined(true);
+      expect(initialEntry.length).toBeGreaterThan(0);
       done();
     });
   });
