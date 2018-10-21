@@ -14,7 +14,7 @@ $(function() {
    * feeds definitions, the allFeeds variable in our application.
    */
   describe('RSS Feeds', function() {
-    /* This is our first test and it makes sure that the
+    /* This first test makes sure that the
      * allFeeds variable has been defined and that it is not
      * empty.
      */
@@ -26,10 +26,9 @@ $(function() {
      * and ensures that it has a URL defined and not empty.
      */
     it('URL defined', function() {
-      for (let i = 0; i < allFeeds.length; i++) {
-        expect(allFeeds[i].url).toBeDefined();
-        expect(allFeeds[i].url).not.toBe();
-      }
+      allFeeds.forEach(function(feed){
+        expect(feed.url).toBeDefined();
+      })
     });
 
     /* This test loops through each feed
@@ -37,12 +36,11 @@ $(function() {
      * and that the name is not empty.
      */
     it('name defined', function() {
-      for (let i = 0; i < allFeeds.length; i++) {
-        expect(allFeeds[i].name).toBeDefined();
-        expect(allFeeds[i].name).not.toBe();
-      }
+      allFeeds.forEach(function(feed){
+        expect(feed.name).toBeDefined();
     });
   });
+});
 
   /* Test suite named "The menu" */
   describe('The menu', function() {
